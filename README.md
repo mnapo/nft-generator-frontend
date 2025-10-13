@@ -2,8 +2,8 @@
 
 # INSTALL
 ```
-git clone https://github.com/mnapo/nft-generator-client.git
-cd nft-generator-client
+git clone https://github.com/mnapo/nft-generator-frontend.git
+cd nft-generator-frontend
 npm install
 ```
 
@@ -11,3 +11,5 @@ npm install
 ```
 npm run dev
 ```
+> [!IMPORTANT]  
+> Make sure SV is already running.
