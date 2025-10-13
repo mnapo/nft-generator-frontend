@@ -1,26 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import UploadSection from "./components/UploadSection";
+import "./App.css";
 
-export default function App(){
+export default function App() {
   const [result, setResult] = useState(null);
+  const [animate, setAnimate] = useState(false);
+
+  useEffect(() => {
+    setAnimate(true);
+  }, []);
+
   return (
-    <div style={{ fontFamily: "sans-serif", padding: 20, backgroundColor: "#000" }}>
-      <h1>Generador NFT desde QR</h1>
-      <p>Subí una imagen del QR o insertá la URL del mismo para generar tu NFT</p>
-      <UploadSection onResult={setResult} />
+    <div className="app-container">
+      <h1 className={`title ${animate ? "animate" : ""}`}>
+        QR → NFT
+      </h1>
+
+      <p className="text">
+        Subí una imagen del QR o insertá la URL del mismo para generar tu NFT
+      </p>
+
+      <div className="upload-wrapper">
+        <UploadSection />
+      </div>
+
       {result && (
-        <div style={{ marginTop: 20 }}>
+        <div className="result-container">
           <h3>Resultado</h3>
-          <pre style={{ maxHeight: 300, overflow: "auto" }}>{JSON.stringify(result, null, 2)}</pre>
-          {result.opensea && <p><a href={result.opensea} target="_blank">Ver en OpenSea (testnets)</a></p>}
+          <pre className="pre">{JSON.stringify(result, null, 2)}</pre>
+
+          {result.opensea && (
+            <p>
+              <a href={result.opensea} target="_blank" rel="noopener noreferrer">
+                Ver en OpenSea (testnets)
+              </a>
+            </p>
+          )}
+
           {result.preview?.imageIpfsUrl && (
             <div>
-              <p>Previsualización IPFS:</p>
-              <img src={`https://ipfs.io/ipfs/${result.preview.imageIpfsUrl.replace("ipfs://","")}`} alt="ipfs" style={{maxWidth:400}}/>
+              <p>Previsualización IPFS</p>
+              <img
+                src={`https://ipfs.io/ipfs/${result.preview.imageIpfsUrl.replace(
+                  "ipfs://",
+                  ""
+                )}`}
+                alt="ipfs"
+                className="preview-image"
+              />
             </div>
           )}
         </div>
       )}
     </div>
-  )
+  );
 }

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./UploadSection.css";
 
 export default function UploadSection({ onResult }) {
   const [file, setFile] = useState(null);
@@ -8,7 +9,7 @@ export default function UploadSection({ onResult }) {
   const [description, setDescription] = useState("NFT generado desde QR del juego");
   const [loading, setLoading] = useState(false);
 
-  async function handleSubmit(e){
+  async function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
     try {
@@ -23,7 +24,7 @@ export default function UploadSection({ onResult }) {
       });
 
       onResult(resp.data);
-    } catch(err) {
+    } catch (err) {
       console.error(err);
       onResult({ success: false, error: err.message || "error" });
     } finally {
@@ -32,26 +33,34 @@ export default function UploadSection({ onResult }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: "grid", gap: 8, maxWidth: 600 }}>
-      <label>
-        Nombre:
-        <input value={name} onChange={(e)=>setName(e.target.value)} />
-      </label>
-      <label>
-        Descripción:
-        <input value={description} onChange={(e)=>setDescription(e.target.value)} />
-      </label>
-      <label>
-        Subir imagen (archivo):
-        <input type="file" accept="image/*" onChange={(e)=>setFile(e.target.files[0])} />
-      </label>
-      <div style={{ textAlign: "center" }}>o</div>
-      <label>
-        Ingresar URL de la imagen:
-        <input value={imageUrl} onChange={(e)=>setImageUrl(e.target.value)} />
-      </label>
+    <form className="upload-form" onSubmit={handleSubmit}>
+      <div className="form-item">
+        <label>Nombre</label>
+        <input value={name} onChange={e => setName(e.target.value)} />
+      </div>
 
-      <button type="submit" disabled={loading || (!file && !imageUrl)}>
+      <div className="form-item">
+        <label>Descripción</label>
+        <input value={description} onChange={e => setDescription(e.target.value)} />
+      </div>
+
+      <div className="form-item">
+        <label>Subir imagen</label>
+        <input type="file" accept="image/*" onChange={e => setFile(e.target.files[0])} />
+      </div>
+
+      <div className="or-text">o</div>
+
+      <div className="form-item">
+        <label>Ingresar URL de la imagen</label>
+        <input value={imageUrl} onChange={e => setImageUrl(e.target.value)} />
+      </div>
+
+      <button
+        type="submit"
+        className="submit-button"
+        disabled={loading || (!file && !imageUrl)}
+      >
         {loading ? "Generando..." : "Crear NFT"}
       </button>
     </form>
