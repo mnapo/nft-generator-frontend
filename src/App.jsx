@@ -17,7 +17,7 @@ export default function App() {
       </h1>
 
       <p className="text">
-        Subí una imagen del QR o insertá la URL del mismo para generar tu NFT
+        Upload a QR image or insert the URL to generate your NFT
       </p>
 
       <div className="upload-wrapper">
@@ -26,20 +26,20 @@ export default function App() {
 
       {result && (
         <div className="result-container">
-          <h3>Resultado</h3>
+          <h3>Result</h3>
           <pre className="pre">{JSON.stringify(result, null, 2)}</pre>
 
           {result.opensea && (
             <p>
               <a href={result.opensea} target="_blank" rel="noopener noreferrer">
-                Ver en OpenSea (testnets)
+                View on OpenSea (testnets)
               </a>
             </p>
           )}
 
           {result.preview?.imageIpfsUrl && (
             <div>
-              <p>Previsualización IPFS</p>
+              <p>IPFS Preview</p>
               <img
                 src={`https://ipfs.io/ipfs/${result.preview.imageIpfsUrl.replace(
                   "ipfs://",

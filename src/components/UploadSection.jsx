@@ -6,7 +6,7 @@ export default function UploadSection({ onResult }) {
   const [file, setFile] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
   const [name, setName] = useState("QR NFT");
-  const [description, setDescription] = useState("NFT generado desde QR del juego");
+  const [description, setDescription] = useState("NFT generated from game QR");
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e) {
@@ -35,24 +35,24 @@ export default function UploadSection({ onResult }) {
   return (
     <form className="upload-form" onSubmit={handleSubmit}>
       <div className="form-item">
-        <label>Nombre</label>
+        <label>Name</label>
         <input value={name} onChange={e => setName(e.target.value)} />
       </div>
 
       <div className="form-item">
-        <label>Descripción</label>
+        <label>Description</label>
         <input value={description} onChange={e => setDescription(e.target.value)} />
       </div>
 
       <div className="form-item">
-        <label>Subir imagen</label>
+        <label>Upload image</label>
         <input type="file" accept="image/*" onChange={e => setFile(e.target.files[0])} />
       </div>
 
       <div className="or-text">o</div>
 
       <div className="form-item">
-        <label>Ingresar URL de la imagen</label>
+        <label>Enter image URL</label>
         <input value={imageUrl} onChange={e => setImageUrl(e.target.value)} />
       </div>
 
@@ -61,7 +61,7 @@ export default function UploadSection({ onResult }) {
         className="submit-button"
         disabled={loading || (!file && !imageUrl)}
       >
-        {loading ? "Generando..." : "Crear NFT"}
+        {loading ? "Generating..." : "Create NFT"}
       </button>
     </form>
   );
