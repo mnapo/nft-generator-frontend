@@ -1,13 +1,14 @@
-# NFT Generator Client
+# NFT GENERATOR (CLIENT)
+Backend: https://github.com/mnapo/nft-generator-sv
 
-# INSTALL
+## Install
 ```
 git clone https://github.com/mnapo/nft-generator-frontend.git
 cd nft-generator-frontend
 npm install
 ```
 
-# USAGE
+## Use
 ```
 npm run dev
 ```
